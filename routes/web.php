@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,17 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::resource('post', PostController::class);
+
+Route::get('/', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/actionlogin', [AuthController::class, 'authenticate']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+// google
+Route::get('/auth/redirect', [AuthController::class,'redirectToProvider']);
+Route::get('/auth/callback', [AuthController::class,'handleProviderCallback']);

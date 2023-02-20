@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Crud Rafli</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -31,16 +32,17 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('post.create') }}" class="btn btn-md btn-success mb-3 float-right">New
+                        <a href="{{ route('post.create') }}" class="btn btn-md btn-success mb-3 float-right"><i class="bi bi-r-circle-fill"></i>New
                             Post</a>
 
+                        <h3><i class="bi bi-globe-asia-australia"></i>Data Post</h3>
                         <table class="table table-bordered mt-1 text-center">
                             <thead>
                                 <tr>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Create At</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col"><i class="bi bi-emoji-dizzy-fill"></i>Nama</th>
+                                    <th scope="col"><i class="bi bi-bar-chart-fill"></i>Status</th>
+                                    <th scope="col"><i class="bi bi-android2"></i>Tanggal Masuk</th>
+                                    <th scope="col"><i class="bi bi-yin-yang"></i>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,10 +55,10 @@
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                             action="{{ route('post.destroy', $post->id) }}" method="POST">
                                             <a href="{{ route('post.edit', $post->id) }}"
-                                                class="btn btn-sm btn-primary">EDIT</a>
+                                                class="btn btn-sm btn-primary"><i class="bi bi-pen-fill"></i>EDIT</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                            <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash3-fill"></i>HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -67,11 +69,31 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-door-closed-fill"></i>
+                        Logout
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-airplane-engines"></i>Apakah Anda Ingin Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>
+                <a class="btn btn-primary" href="/logout" role="button">Y</a>
+            </div>
+        </div>
+  </div>
+</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
